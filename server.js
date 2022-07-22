@@ -13,6 +13,10 @@ app.use(cors({ origin: '*' }));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
 app.get('/', function(req, res) {
+  res.sendFile(__dirname + '/index.html');
+});
+
+app.get('/remote', function(req, res) {
   res.sendFile(__dirname + '/remote.html');
 });
 
@@ -35,4 +39,4 @@ io.on('connection', function(socket) {
   });
 });
 
-http.listen(3000, function() {});
+http.listen(3000, '0.0.0.0', function() {});
